@@ -103,21 +103,31 @@ export async function callAIAgent(
     if (!submitRes) {
       return {
         success: false,
-        response: { status: 'error', result: {}, message: 'No response from server' },
-        error: 'No response from server',
+        response: { status: 'error', result: {}, message: 'No response from server. Please check your connection and try again.' },
+        error: 'No response from server. Please check your connection and try again.',
       }
     }
 
-    const submitData = await submitRes.json()
+    let submitData: any
+    try {
+      submitData = await submitRes.json()
+    } catch {
+      return {
+        success: false,
+        response: { status: 'error', result: {}, message: `Server returned status ${submitRes.status} with unreadable response` },
+        error: `Server returned status ${submitRes.status} with unreadable response`,
+      }
+    }
 
     // If submit itself failed or no task_id returned, return as-is
     if (!submitData.task_id) {
+      const errorMsg = submitData.error || submitData.response?.message || submitData.message || 'No task_id in response'
       return submitData.success === false
-        ? submitData
+        ? { ...submitData, error: errorMsg }
         : {
             success: false,
-            response: { status: 'error', result: {}, message: 'No task_id in response' },
-            error: 'No task_id in response',
+            response: { status: 'error', result: {}, message: errorMsg },
+            error: errorMsg,
           }
     }
 
@@ -132,26 +142,39 @@ export async function callAIAgent(
       await new Promise(r => setTimeout(r, delay))
       attempt++
 
-      const pollRes = await fetchWrapper('/api/agent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ task_id }),
-      })
+      let pollRes: Response | undefined
+      try {
+        pollRes = await fetchWrapper('/api/agent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ task_id }),
+        })
+      } catch {
+        continue // network error — retry next poll
+      }
       if (!pollRes) {
         continue // fetchWrapper returned undefined (redirect/error) — retry next poll
       }
-      const pollData = await pollRes.json()
+
+      let pollData: any
+      try {
+        pollData = await pollRes.json()
+      } catch {
+        continue // unreadable response — retry next poll
+      }
 
       if (pollData.status === 'processing') {
         continue
       }
 
       // Completed or failed — attach agent_id/user_id/session_id and return
+      const errorMsg = pollData.error || pollData.response?.message
       return {
         ...pollData,
         agent_id,
         user_id,
         session_id,
+        ...(errorMsg && !pollData.success ? { error: errorMsg } : {}),
       }
     }
 

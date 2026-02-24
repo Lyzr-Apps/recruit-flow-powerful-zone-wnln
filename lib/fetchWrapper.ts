@@ -92,12 +92,17 @@ const fetchWrapper = async (...args) => {
     } // if backend is erroring out
     else if (response.status >= 500) {
       const requestUrl = typeof args[0] === "string" ? args[0] : args[0]?.url || "";
+      // For /api/agent calls, return the response so the caller can read the error body
+      // instead of swallowing it and returning undefined
+      if (requestUrl.includes("/api/agent")) {
+        return response;
+      }
       sendErrorToParent(
         `Backend returned ${response.status} error for ${requestUrl}`,
         response.status,
         requestUrl,
       );
-      return;
+      return response;
     }
 
     return response;
