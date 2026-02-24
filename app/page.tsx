@@ -446,7 +446,9 @@ export default function Page() {
   const [activeSchedCandidate, setActiveSchedCandidate] = useState<string | null>(null)
 
   // ── Scheduling form ──
-  const [schedForm, setSchedForm] = useState({ interviewerEmail: '', candidateEmail: '', dateStart: '', dateEnd: '', timeStart: '09:00', timeEnd: '17:00', duration: '60', interviewType: 'Technical' })
+  const [schedForm, setSchedForm] = useState({ candidateEmail: '', dateStart: '', dateEnd: '', timeStart: '09:00', timeEnd: '17:00', duration: '60', interviewType: 'Technical' })
+  const [interviewerEmails, setInterviewerEmails] = useState<string[]>([''])
+  const [newInterviewerEmail, setNewInterviewerEmail] = useState('')
 
   // ── Negotiation form ──
   const [negForm, setNegForm] = useState({ budgetMin: '', budgetMax: '', candidateExpected: '', benefits: '', equity: '' })
@@ -594,13 +596,38 @@ export default function Page() {
     }
   }
 
+  // Auto-populate candidate email when switching candidates in scheduling
+  const getSchedCandidateEmail = (name: string): string => {
+    if (schedForm.candidateEmail) return schedForm.candidateEmail
+    const candidate = effectiveCandidates.find(c => c.name === name)
+    return candidate?.contact_info ?? ''
+  }
+
+  const validInterviewerEmails = interviewerEmails.filter(e => e.trim() !== '')
+
+  const handleAddInterviewerEmail = () => {
+    if (newInterviewerEmail.trim() && !interviewerEmails.includes(newInterviewerEmail.trim())) {
+      setInterviewerEmails(prev => [...prev.filter(e => e.trim() !== ''), newInterviewerEmail.trim()])
+      setNewInterviewerEmail('')
+    }
+  }
+
+  const handleRemoveInterviewerEmail = (email: string) => {
+    setInterviewerEmails(prev => {
+      const filtered = prev.filter(e => e !== email)
+      return filtered.length === 0 ? [''] : filtered
+    })
+  }
+
   const handleScheduleInterview = async (candidateName: string) => {
-    if (!schedForm.interviewerEmail || !schedForm.candidateEmail) { setStatus('scheduling', 'Please fill in all required fields', 'error'); return }
+    const candEmail = getSchedCandidateEmail(candidateName)
+    if (validInterviewerEmails.length === 0) { setStatus('scheduling', 'Please add at least one interviewer email', 'error'); return }
+    if (!candEmail) { setStatus('scheduling', 'Please enter the candidate email', 'error'); return }
     setLoading(`sched-${candidateName}`, true)
     clearStatus('scheduling')
     setActiveAgentId(AGENTS.scheduler)
 
-    const message = `Schedule a ${schedForm.interviewType} interview for candidate ${candidateName}. Interviewer email: ${schedForm.interviewerEmail}. Candidate email: ${schedForm.candidateEmail}. Preferred date range: ${schedForm.dateStart} to ${schedForm.dateEnd}. Time window: ${schedForm.timeStart} to ${schedForm.timeEnd}. Duration: ${schedForm.duration} minutes. Interview type: ${schedForm.interviewType}.`
+    const message = `Schedule a ${schedForm.interviewType} interview for candidate ${candidateName}. Interviewer email(s): ${validInterviewerEmails.join(', ')}. Candidate email: ${candEmail}. Preferred date range: ${schedForm.dateStart} to ${schedForm.dateEnd}. Time window: ${schedForm.timeStart} to ${schedForm.timeEnd}. Duration: ${schedForm.duration} minutes. Interview type: ${schedForm.interviewType}.`
 
     const result = await callAIAgent(message, AGENTS.scheduler)
     setActiveAgentId(null)
@@ -1290,17 +1317,57 @@ export default function Page() {
                           )}
                         </div>
                       ) : (
-                        <GlassCard className="p-6 space-y-4">
+                        <GlassCard className="p-6 space-y-5">
                           <h3 className="font-semibold text-lg flex items-center gap-2"><FiCalendar className="w-5 h-5 text-primary" /> Schedule Interview - {effectiveSchedCandidate}</h3>
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-1.5">
-                              <Label className="text-xs font-medium">Interviewer Email(s) *</Label>
-                              <Input type="email" placeholder="interviewer@company.com" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={schedForm.interviewerEmail} onChange={(e) => setSchedForm(prev => ({ ...prev, interviewerEmail: e.target.value }))} />
-                            </div>
+
+                          {/* Email Section - Prominent */}
+                          <div className="p-4 bg-primary/5 rounded-[0.875rem] border border-primary/10 space-y-4">
+                            <p className="text-xs font-semibold text-primary uppercase tracking-wider flex items-center gap-1.5"><FiMail className="w-3.5 h-3.5" /> Email Configuration</p>
+
+                            {/* Candidate Email */}
                             <div className="space-y-1.5">
                               <Label className="text-xs font-medium">Candidate Email *</Label>
-                              <Input type="email" placeholder="candidate@email.com" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={schedForm.candidateEmail} onChange={(e) => setSchedForm(prev => ({ ...prev, candidateEmail: e.target.value }))} />
+                              <Input type="email" placeholder="candidate@email.com" className="bg-white/80 border-input rounded-[0.875rem] backdrop-blur-sm" value={schedForm.candidateEmail || getSchedCandidateEmail(effectiveSchedCandidate)} onChange={(e) => setSchedForm(prev => ({ ...prev, candidateEmail: e.target.value }))} />
+                              {!schedForm.candidateEmail && getSchedCandidateEmail(effectiveSchedCandidate) && (
+                                <p className="text-[10px] text-muted-foreground flex items-center gap-1"><FiCheck className="w-3 h-3 text-emerald-500" /> Auto-filled from candidate profile</p>
+                              )}
                             </div>
+
+                            {/* Interviewer Emails - Multi Add */}
+                            <div className="space-y-2">
+                              <Label className="text-xs font-medium">Interviewer Email(s) *</Label>
+                              {validInterviewerEmails.length > 0 && (
+                                <div className="flex flex-wrap gap-2">
+                                  {validInterviewerEmails.map((email) => (
+                                    <span key={email} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/80 border border-border rounded-full text-xs font-medium">
+                                      <FiMail className="w-3 h-3 text-muted-foreground" />
+                                      {email}
+                                      <button onClick={() => handleRemoveInterviewerEmail(email)} className="text-muted-foreground hover:text-red-500 transition-colors ml-0.5">
+                                        <FiX className="w-3 h-3" />
+                                      </button>
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                              <div className="flex items-center gap-2">
+                                <Input
+                                  type="email"
+                                  placeholder="Enter interviewer email and press Add"
+                                  className="bg-white/80 border-input rounded-[0.875rem] backdrop-blur-sm flex-1"
+                                  value={newInterviewerEmail}
+                                  onChange={(e) => setNewInterviewerEmail(e.target.value)}
+                                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddInterviewerEmail() } }}
+                                />
+                                <Button type="button" variant="outline" size="sm" onClick={handleAddInterviewerEmail} disabled={!newInterviewerEmail.trim()} className="rounded-[0.875rem] px-4 h-10 border-primary/30 text-primary hover:bg-primary/10">
+                                  <FiPlus className="w-4 h-4 mr-1" /> Add
+                                </Button>
+                              </div>
+                              <p className="text-[10px] text-muted-foreground">Add multiple interviewer emails for panel interviews. Press Enter or click Add.</p>
+                            </div>
+                          </div>
+
+                          {/* Schedule Details */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1.5">
                               <Label className="text-xs font-medium">Preferred Date Start</Label>
                               <Input type="date" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={schedForm.dateStart} onChange={(e) => setSchedForm(prev => ({ ...prev, dateStart: e.target.value }))} />
@@ -1342,11 +1409,15 @@ export default function Page() {
                                   <SelectItem value="Behavioral">Behavioral</SelectItem>
                                   <SelectItem value="Panel">Panel</SelectItem>
                                   <SelectItem value="Cultural Fit">Cultural Fit</SelectItem>
+                                  <SelectItem value="HR Round">HR Round</SelectItem>
+                                  <SelectItem value="System Design">System Design</SelectItem>
+                                  <SelectItem value="DSA Round">DSA Round</SelectItem>
                                 </SelectContent>
                               </Select>
                             </div>
                           </div>
-                          <Button onClick={() => handleScheduleInterview(effectiveSchedCandidate)} disabled={loadingStates[`sched-${effectiveSchedCandidate}`] || !schedForm.interviewerEmail || !schedForm.candidateEmail} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-[0.875rem] h-11">
+
+                          <Button onClick={() => handleScheduleInterview(effectiveSchedCandidate)} disabled={loadingStates[`sched-${effectiveSchedCandidate}`] || validInterviewerEmails.length === 0 || !getSchedCandidateEmail(effectiveSchedCandidate)} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-[0.875rem] h-11">
                             {loadingStates[`sched-${effectiveSchedCandidate}`] ? <><FiLoader className="w-4 h-4 mr-2 animate-spin" /> Scheduling...</> : <><FiCalendar className="w-4 h-4 mr-2" /> Schedule Interview</>}
                           </Button>
                         </GlassCard>
