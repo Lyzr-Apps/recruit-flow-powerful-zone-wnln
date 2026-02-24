@@ -621,13 +621,20 @@ export default function Page() {
 
   const handleScheduleInterview = async (candidateName: string) => {
     const candEmail = getSchedCandidateEmail(candidateName)
-    if (validInterviewerEmails.length === 0) { setStatus('scheduling', 'Please add at least one interviewer email', 'error'); return }
+    // Include any email currently being typed in the input
+    const allEmails = [...validInterviewerEmails]
+    if (newInterviewerEmail.trim() && !allEmails.includes(newInterviewerEmail.trim())) {
+      allEmails.push(newInterviewerEmail.trim())
+      setInterviewerEmails(allEmails)
+      setNewInterviewerEmail('')
+    }
+    if (allEmails.length === 0) { setStatus('scheduling', 'Please add at least one interviewer email', 'error'); return }
     if (!candEmail) { setStatus('scheduling', 'Please enter the candidate email', 'error'); return }
     setLoading(`sched-${candidateName}`, true)
     clearStatus('scheduling')
     setActiveAgentId(AGENTS.scheduler)
 
-    const message = `Schedule a ${schedForm.interviewType} interview for candidate ${candidateName}. Interviewer email(s): ${validInterviewerEmails.join(', ')}. Candidate email: ${candEmail}. Preferred date range: ${schedForm.dateStart} to ${schedForm.dateEnd}. Time window: ${schedForm.timeStart} to ${schedForm.timeEnd}. Duration: ${schedForm.duration} minutes. Interview type: ${schedForm.interviewType}.`
+    const message = `Schedule a ${schedForm.interviewType} interview for candidate ${candidateName}. Interviewer email(s): ${allEmails.join(', ')}. Candidate email: ${candEmail}. Preferred date range: ${schedForm.dateStart} to ${schedForm.dateEnd}. Time window: ${schedForm.timeStart} to ${schedForm.timeEnd}. Duration: ${schedForm.duration} minutes. Interview type: ${schedForm.interviewType}.`
 
     const result = await callAIAgent(message, AGENTS.scheduler)
     setActiveAgentId(null)
@@ -1417,7 +1424,7 @@ export default function Page() {
                             </div>
                           </div>
 
-                          <Button onClick={() => handleScheduleInterview(effectiveSchedCandidate)} disabled={loadingStates[`sched-${effectiveSchedCandidate}`] || validInterviewerEmails.length === 0 || !getSchedCandidateEmail(effectiveSchedCandidate)} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-[0.875rem] h-11">
+                          <Button onClick={() => handleScheduleInterview(effectiveSchedCandidate)} disabled={loadingStates[`sched-${effectiveSchedCandidate}`]} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-[0.875rem] h-11">
                             {loadingStates[`sched-${effectiveSchedCandidate}`] ? <><FiLoader className="w-4 h-4 mr-2 animate-spin" /> Scheduling...</> : <><FiCalendar className="w-4 h-4 mr-2" /> Schedule Interview</>}
                           </Button>
                         </GlassCard>
