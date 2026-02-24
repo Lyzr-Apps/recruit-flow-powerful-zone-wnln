@@ -207,27 +207,27 @@ type ScreenId = 'dashboard' | 'sourcing' | 'matching' | 'evaluation' | 'scheduli
 const SAMPLE_JOB: JobDescription = {
   title: 'Senior Full-Stack Engineer',
   department: 'Engineering',
-  requirements: 'Build and maintain scalable web applications using React, Node.js, and cloud technologies. Lead feature development, conduct code reviews, and mentor junior developers. Experience with microservices architecture and CI/CD pipelines required.',
-  skills: 'React, Node.js, TypeScript, AWS, PostgreSQL, Docker, GraphQL',
+  requirements: 'Build and maintain scalable web applications using React, Node.js, and cloud technologies. Lead feature development, conduct code reviews, and mentor junior developers. Experience with microservices architecture and CI/CD pipelines required. Familiarity with Indian fintech or e-commerce platforms is a plus.',
+  skills: 'React, Node.js, TypeScript, AWS, PostgreSQL, Docker, GraphQL, Kafka',
   experienceMin: '5',
   experienceMax: '10',
-  location: 'San Francisco, CA',
-  salaryMin: '150000',
-  salaryMax: '220000',
+  location: 'Bangalore, India',
+  salaryMin: '2500000',
+  salaryMax: '4500000',
 }
 
 const SAMPLE_CANDIDATES: Candidate[] = [
-  { name: 'Sarah Chen', current_title: 'Senior Software Engineer', company: 'Stripe', location: 'San Francisco, CA', years_of_experience: '7', key_skills: ['React', 'TypeScript', 'Node.js', 'AWS', 'PostgreSQL'], relevance_score: '92', relevance_notes: 'Strong full-stack background with fintech experience. Led a team of 5 engineers at Stripe.', contact_info: 'sarah.chen@email.com', source_platform: 'LinkedIn' },
-  { name: 'James Rodriguez', current_title: 'Staff Engineer', company: 'Airbnb', location: 'San Francisco, CA', years_of_experience: '9', key_skills: ['React', 'GraphQL', 'Docker', 'Kubernetes', 'Python'], relevance_score: '88', relevance_notes: 'Extensive experience in scalable architectures. Missing some Node.js specifics.', contact_info: 'j.rodriguez@email.com', source_platform: 'LinkedIn' },
-  { name: 'Priya Patel', current_title: 'Full-Stack Developer', company: 'Shopify', location: 'Remote', years_of_experience: '6', key_skills: ['React', 'Node.js', 'TypeScript', 'GraphQL', 'MongoDB'], relevance_score: '85', relevance_notes: 'Strong product engineering skills. E-commerce domain expertise.', contact_info: 'priya.p@email.com', source_platform: 'Indeed' },
-  { name: 'Michael Kim', current_title: 'Software Engineer II', company: 'Google', location: 'Mountain View, CA', years_of_experience: '5', key_skills: ['React', 'Go', 'TypeScript', 'GCP', 'PostgreSQL'], relevance_score: '78', relevance_notes: 'Strong technical foundation from Google. Less Node.js experience.', contact_info: 'mike.kim@email.com', source_platform: 'LinkedIn' },
-  { name: 'Emily Watson', current_title: 'Lead Developer', company: 'Startup Labs', location: 'Oakland, CA', years_of_experience: '8', key_skills: ['React', 'Node.js', 'AWS', 'Docker', 'Redis'], relevance_score: '90', relevance_notes: 'Startup leadership experience. Built systems from scratch at scale.', contact_info: 'emily.w@email.com', source_platform: 'GitHub' },
+  { name: 'Arun Kumar Sharma', current_title: 'Senior Software Engineer', company: 'Razorpay', location: 'Bangalore, India', years_of_experience: '7', key_skills: ['React', 'TypeScript', 'Node.js', 'AWS', 'PostgreSQL', 'Kafka'], relevance_score: '93', relevance_notes: 'Strong full-stack background with fintech experience at Razorpay. Led payments team of 6 engineers. IIT Bombay alumnus.', contact_info: 'arun.sharma@email.com', source_platform: 'Naukri' },
+  { name: 'Priya Venkatesh', current_title: 'Staff Engineer', company: 'Flipkart', location: 'Bangalore, India', years_of_experience: '9', key_skills: ['React', 'GraphQL', 'Docker', 'Kubernetes', 'Java', 'Node.js'], relevance_score: '90', relevance_notes: 'Extensive experience in scalable e-commerce architectures at Flipkart. Built services handling 10M+ requests/day. NIT Trichy alumna.', contact_info: 'priya.v@email.com', source_platform: 'LinkedIn' },
+  { name: 'Rahul Mehta', current_title: 'Full-Stack Developer', company: 'Swiggy', location: 'Bangalore, India', years_of_experience: '6', key_skills: ['React', 'Node.js', 'TypeScript', 'GraphQL', 'MongoDB', 'Redis'], relevance_score: '87', relevance_notes: 'Strong product engineering skills at Swiggy. Built real-time order tracking systems. BITS Pilani graduate.', contact_info: 'rahul.mehta@email.com', source_platform: 'Instahyre' },
+  { name: 'Deepika Nair', current_title: 'SDE-3', company: 'Amazon India', location: 'Bangalore, India', years_of_experience: '5', key_skills: ['React', 'Java', 'TypeScript', 'AWS', 'PostgreSQL', 'DynamoDB'], relevance_score: '82', relevance_notes: 'Strong technical foundation from Amazon India. System design expertise. IIIT Hyderabad alumna. Less Node.js experience.', contact_info: 'deepika.n@email.com', source_platform: 'LinkedIn' },
+  { name: 'Vikram Reddy', current_title: 'Lead Developer', company: 'Zerodha', location: 'Bangalore, India', years_of_experience: '8', key_skills: ['React', 'Node.js', 'AWS', 'Docker', 'Go', 'Redis'], relevance_score: '91', relevance_notes: 'Startup leadership at Zerodha. Built low-latency trading platforms from scratch. IIT Kharagpur alumnus. Strong system design.', contact_info: 'vikram.r@email.com', source_platform: 'Cutshort' },
 ]
 
 const SAMPLE_RANKED: RankedCandidate[] = [
-  { rank: '1', name: 'Sarah Chen', overall_score: '92', skills_match: '95', experience_match: '90', cultural_fit: '88', scoring_reasoning: 'Strongest technical match with comprehensive full-stack skills. Stripe experience aligns well with engineering culture.', strengths: ['Perfect tech stack alignment', 'Leadership experience', 'Fintech domain expertise'], concerns: ['May expect higher compensation'] },
-  { rank: '2', name: 'Emily Watson', overall_score: '90', skills_match: '88', experience_match: '92', cultural_fit: '90', scoring_reasoning: 'Exceptional startup experience building systems from scratch. Strong cultural alignment for innovation-driven teams.', strengths: ['Startup leadership', 'Full ownership mentality', 'Infrastructure expertise'], concerns: ['Smaller company background'] },
-  { rank: '3', name: 'James Rodriguez', overall_score: '88', skills_match: '82', experience_match: '94', cultural_fit: '85', scoring_reasoning: 'Most experienced candidate with strong architecture skills. GraphQL expertise is a plus.', strengths: ['Deep architecture knowledge', 'Senior mentoring experience', 'Scale-proven skills'], concerns: ['Limited Node.js experience', 'May be overqualified'] },
+  { rank: '1', name: 'Arun Kumar Sharma', overall_score: '93', skills_match: '95', experience_match: '91', cultural_fit: '90', scoring_reasoning: 'Strongest technical match with comprehensive full-stack skills. Razorpay fintech experience aligns perfectly. IIT Bombay pedigree. Bangalore-based, no relocation needed.', strengths: ['Perfect tech stack alignment', 'Fintech domain expertise at Razorpay', 'IIT Bombay alumnus', 'Bangalore native'], concerns: ['May expect 40+ LPA CTC given Razorpay background'] },
+  { rank: '2', name: 'Vikram Reddy', overall_score: '91', skills_match: '88', experience_match: '93', cultural_fit: '92', scoring_reasoning: 'Exceptional startup leadership at Zerodha building low-latency systems. Strong cultural alignment for innovation-driven teams. IIT Kharagpur background.', strengths: ['Startup leadership at Zerodha', 'System design expertise', 'Full ownership mentality', 'Go + Node.js dual proficiency'], concerns: ['Zerodha is a flat org - may need adjustment to hierarchical structure'] },
+  { rank: '3', name: 'Priya Venkatesh', overall_score: '90', skills_match: '85', experience_match: '94', cultural_fit: '87', scoring_reasoning: 'Most experienced candidate with deep e-commerce architecture skills at Flipkart scale. 10M+ requests/day experience is rare.', strengths: ['Flipkart-scale architecture experience', 'Senior mentoring track record', 'Kubernetes expertise at scale'], concerns: ['Primarily Java background, Node.js is secondary', 'May expect Staff-level CTC of 45+ LPA'] },
 ]
 
 // ──────────────────────────────────────────────
@@ -486,7 +486,7 @@ export default function Page() {
     clearStatus('sourcing')
     setActiveAgentId(AGENTS.sourcing)
 
-    const message = `Find candidates for: ${job.title} at ${job.department || 'our company'}. Requirements: ${job.requirements}. Key skills: ${job.skills}. Experience: ${job.experienceMin}-${job.experienceMax} years. Location: ${job.location}. Salary range: $${job.salaryMin}-$${job.salaryMax}.`
+    const message = `Find candidates for: ${job.title} at ${job.department || 'our company'}. Requirements: ${job.requirements}. Key skills: ${job.skills}. Experience: ${job.experienceMin}-${job.experienceMax} years. Location: ${job.location || 'Bangalore, India'}. CTC budget range: INR ${job.salaryMin}-${job.salaryMax} per annum.`
 
     const result = await callAIAgent(message, AGENTS.sourcing)
     setActiveAgentId(null)
@@ -514,7 +514,7 @@ export default function Page() {
 
     const selected = effectiveCandidates.filter(c => selectedForMatching.includes(c.name))
     const job = effectiveJob
-    const message = `Match and rank these candidates for the ${job.title} role. Job requirements: ${job.requirements}. Skills needed: ${job.skills}. Experience: ${job.experienceMin}-${job.experienceMax} years.\n\nCandidates:\n${selected.map(c => `- ${c.name}: ${c.current_title} at ${c.company}, ${c.years_of_experience} years experience, skills: ${Array.isArray(c.key_skills) ? c.key_skills.join(', ') : ''}`).join('\n')}`
+    const message = `Match and rank these candidates for the ${job.title} role based in ${job.location || 'Bangalore, India'}. Job requirements: ${job.requirements}. Skills needed: ${job.skills}. Experience: ${job.experienceMin}-${job.experienceMax} years. Consider Indian tech market factors: product vs service company experience, IIT/NIT/BITS educational pedigree, and Bangalore ecosystem fit.\n\nCandidates:\n${selected.map(c => `- ${c.name}: ${c.current_title} at ${c.company}, ${c.location}, ${c.years_of_experience} years experience, skills: ${Array.isArray(c.key_skills) ? c.key_skills.join(', ') : ''}`).join('\n')}`
 
     const result = await callAIAgent(message, AGENTS.matching)
     setActiveAgentId(null)
@@ -541,7 +541,7 @@ export default function Page() {
 
     const job = effectiveJob
     const candidateInfo = effectiveCandidates.find(c => c.name === candidateName)
-    const message = `Generate screening assessment questions for ${candidateName} applying for ${job.title}. ${candidateInfo ? `Current role: ${candidateInfo.current_title} at ${candidateInfo.company}. Skills: ${Array.isArray(candidateInfo.key_skills) ? candidateInfo.key_skills.join(', ') : ''}. Experience: ${candidateInfo.years_of_experience} years.` : ''} Job requirements: ${job.requirements}. Required skills: ${job.skills}.`
+    const message = `Generate screening assessment questions for ${candidateName} applying for ${job.title} at our ${job.location || 'Bangalore, India'} office. ${candidateInfo ? `Current role: ${candidateInfo.current_title} at ${candidateInfo.company} (${candidateInfo.location}). Skills: ${Array.isArray(candidateInfo.key_skills) ? candidateInfo.key_skills.join(', ') : ''}. Experience: ${candidateInfo.years_of_experience} years.` : ''} Job requirements: ${job.requirements}. Required skills: ${job.skills}.`
 
     const result = await callAIAgent(message, AGENTS.evaluation)
     setActiveAgentId(null)
@@ -662,7 +662,7 @@ export default function Page() {
     setActiveAgentId(AGENTS.negotiation)
 
     const job = effectiveJob
-    const message = `Analyze compensation for ${job.title} role in ${job.location}. Company budget: $${negForm.budgetMin}-$${negForm.budgetMax}. Candidate's expected salary: $${negForm.candidateExpected || 'not specified'}. Benefits to include: ${negForm.benefits || 'standard package'}. Equity options: ${negForm.equity || 'negotiable'}.`
+    const message = `Analyze compensation for ${job.title} role in ${job.location || 'Bangalore, India'}. Company CTC budget: INR ${negForm.budgetMin}-${negForm.budgetMax} per annum. Candidate's expected CTC: INR ${negForm.candidateExpected || 'not specified'} per annum. Benefits to include: ${negForm.benefits || 'standard Indian package (PF, gratuity, medical insurance)'}. Equity/ESOPs: ${negForm.equity || 'negotiable'}.`
 
     const result = await callAIAgent(message, AGENTS.negotiation)
     setActiveAgentId(null)
@@ -691,7 +691,7 @@ export default function Page() {
     setActiveAgentId(AGENTS.offer)
 
     const compInfo = negotiationResult?.recommended_offer
-    const message = `Draft an offer letter for ${offerForm.candidateName} for the position of ${offerForm.position} in the ${offerForm.department || 'Engineering'} department. Start date: ${offerForm.startDate || 'TBD'}. Acceptance deadline: ${offerForm.acceptanceDeadline || '2 weeks from offer date'}. Compensation: Base salary: ${compInfo?.base_salary ?? 'as per market rate'}, Bonus: ${compInfo?.bonus ?? 'standard'}, Equity: ${compInfo?.equity ?? 'standard package'}, Total compensation: ${compInfo?.total_compensation ?? 'competitive'}.`
+    const message = `Draft an offer letter for ${offerForm.candidateName} for the position of ${offerForm.position} in the ${offerForm.department || 'Engineering'} department at our Bangalore office. Joining date: ${offerForm.startDate || 'TBD'}. Acceptance deadline: ${offerForm.acceptanceDeadline || '2 weeks from offer date'}. CTC Breakdown: Fixed Pay: ${compInfo?.base_salary ?? 'as per market rate'}, Variable Pay/Bonus: ${compInfo?.bonus ?? 'standard'}, ESOPs: ${compInfo?.equity ?? 'as applicable'}, Total CTC: ${compInfo?.total_compensation ?? 'competitive'}. Include standard Indian benefits: PF (12% employer contribution), Gratuity, Medical Insurance (family floater), Leave Encashment. Probation period: 6 months. Notice period: 2 months. Location: Bangalore, Karnataka, India.`
 
     const result = await callAIAgent(message, AGENTS.offer)
     setActiveAgentId(null)
@@ -802,7 +802,7 @@ export default function Page() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-xl font-semibold tracking-tight">{screenTitles[activeScreen]}</h1>
-                <p className="text-xs text-muted-foreground mt-0.5">AI-Powered Recruitment Pipeline</p>
+                <p className="text-xs text-muted-foreground mt-0.5">AI-Powered Recruitment Pipeline - India / Bangalore</p>
               </div>
               <div className="flex items-center gap-3">
                 <Label htmlFor="sample-toggle" className="text-xs text-muted-foreground cursor-pointer">Sample Data</Label>
@@ -905,15 +905,15 @@ export default function Page() {
                       </div>
                       <div className="space-y-1.5">
                         <Label className="text-xs font-medium">Location</Label>
-                        <Input placeholder="e.g., San Francisco, CA" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={sampleMode && !jobDescription.location ? SAMPLE_JOB.location : jobDescription.location} onChange={(e) => setJobDescription(prev => ({ ...prev, location: e.target.value }))} />
+                        <Input placeholder="e.g., Bangalore, India" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={sampleMode && !jobDescription.location ? SAMPLE_JOB.location : jobDescription.location} onChange={(e) => setJobDescription(prev => ({ ...prev, location: e.target.value }))} />
                       </div>
                     </div>
                     <div className="space-y-1.5">
-                      <Label className="text-xs font-medium">Salary Range ($)</Label>
+                      <Label className="text-xs font-medium">CTC Range (INR per annum)</Label>
                       <div className="flex items-center gap-2">
-                        <Input type="number" placeholder="Min" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={sampleMode && !jobDescription.salaryMin ? SAMPLE_JOB.salaryMin : jobDescription.salaryMin} onChange={(e) => setJobDescription(prev => ({ ...prev, salaryMin: e.target.value }))} />
+                        <Input type="number" placeholder="e.g. 2500000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={sampleMode && !jobDescription.salaryMin ? SAMPLE_JOB.salaryMin : jobDescription.salaryMin} onChange={(e) => setJobDescription(prev => ({ ...prev, salaryMin: e.target.value }))} />
                         <span className="text-muted-foreground text-sm">to</span>
-                        <Input type="number" placeholder="Max" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={sampleMode && !jobDescription.salaryMax ? SAMPLE_JOB.salaryMax : jobDescription.salaryMax} onChange={(e) => setJobDescription(prev => ({ ...prev, salaryMax: e.target.value }))} />
+                        <Input type="number" placeholder="e.g. 4500000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={sampleMode && !jobDescription.salaryMax ? SAMPLE_JOB.salaryMax : jobDescription.salaryMax} onChange={(e) => setJobDescription(prev => ({ ...prev, salaryMax: e.target.value }))} />
                       </div>
                     </div>
 
@@ -1489,25 +1489,25 @@ export default function Page() {
                         <h3 className="font-semibold flex items-center gap-2"><FiTrendingUp className="w-4 h-4 text-primary" /> Compensation Analysis</h3>
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-1.5">
-                            <Label className="text-xs font-medium">Budget Min ($) *</Label>
-                            <Input type="number" placeholder="150000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.budgetMin} onChange={(e) => setNegForm(prev => ({ ...prev, budgetMin: e.target.value }))} />
+                            <Label className="text-xs font-medium">CTC Budget Min (INR/annum) *</Label>
+                            <Input type="number" placeholder="2500000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.budgetMin} onChange={(e) => setNegForm(prev => ({ ...prev, budgetMin: e.target.value }))} />
                           </div>
                           <div className="space-y-1.5">
-                            <Label className="text-xs font-medium">Budget Max ($) *</Label>
-                            <Input type="number" placeholder="220000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.budgetMax} onChange={(e) => setNegForm(prev => ({ ...prev, budgetMax: e.target.value }))} />
+                            <Label className="text-xs font-medium">CTC Budget Max (INR/annum) *</Label>
+                            <Input type="number" placeholder="4500000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.budgetMax} onChange={(e) => setNegForm(prev => ({ ...prev, budgetMax: e.target.value }))} />
                           </div>
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-xs font-medium">Candidate Expected Salary ($)</Label>
-                          <Input type="number" placeholder="185000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.candidateExpected} onChange={(e) => setNegForm(prev => ({ ...prev, candidateExpected: e.target.value }))} />
+                          <Label className="text-xs font-medium">Candidate Expected CTC (INR/annum)</Label>
+                          <Input type="number" placeholder="3500000" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.candidateExpected} onChange={(e) => setNegForm(prev => ({ ...prev, candidateExpected: e.target.value }))} />
                         </div>
                         <div className="space-y-1.5">
                           <Label className="text-xs font-medium">Benefits Package</Label>
-                          <Input placeholder="Health, dental, 401k, PTO..." className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.benefits} onChange={(e) => setNegForm(prev => ({ ...prev, benefits: e.target.value }))} />
+                          <Input placeholder="PF, Gratuity, Medical Insurance, Meal Coupons..." className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.benefits} onChange={(e) => setNegForm(prev => ({ ...prev, benefits: e.target.value }))} />
                         </div>
                         <div className="space-y-1.5">
-                          <Label className="text-xs font-medium">Equity Options</Label>
-                          <Input placeholder="e.g., 0.1% vesting over 4 years" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.equity} onChange={(e) => setNegForm(prev => ({ ...prev, equity: e.target.value }))} />
+                          <Label className="text-xs font-medium">ESOPs / Equity</Label>
+                          <Input placeholder="e.g., 5000 ESOPs vesting over 4 years" className="bg-white/60 border-input rounded-[0.875rem] backdrop-blur-sm" value={negForm.equity} onChange={(e) => setNegForm(prev => ({ ...prev, equity: e.target.value }))} />
                         </div>
 
                         {statusMessages['negotiation'] && <StatusMsg message={statusMessages['negotiation'].message} type={statusMessages['negotiation'].type} />}
