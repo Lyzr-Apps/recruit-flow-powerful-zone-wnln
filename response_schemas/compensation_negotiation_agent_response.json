@@ -1,0 +1,68 @@
+{
+  "agent_name": "Compensation Negotiation Agent",
+  "agent_id": "699da45d4d9b8b973a73e3eb",
+  "description": "Expert compensation analyst and negotiation strategist that assists recruiters in managing salary discussions using market benchmarks from web search.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "market_analysis": {
+      "role": "string",
+      "location": "string",
+      "market_median": "string",
+      "market_range_low": "string",
+      "market_range_high": "string",
+      "data_sources": [
+        "string"
+      ]
+    },
+    "recommended_offer": {
+      "base_salary": "string",
+      "bonus": "string",
+      "equity": "string",
+      "total_compensation": "string",
+      "reasoning": "string"
+    },
+    "talking_points": [
+      "string"
+    ],
+    "counter_offer_scenarios": [
+      {
+        "scenario": "string",
+        "response": "string",
+        "adjusted_offer": "string"
+      }
+    ],
+    "negotiation_summary": "string"
+  },
+  "example_response": {
+    "market_analysis": {
+      "role": "sample string",
+      "location": "sample string",
+      "market_median": "sample string",
+      "market_range_low": "sample string",
+      "market_range_high": "sample string",
+      "data_sources": [
+        "sample string"
+      ]
+    },
+    "recommended_offer": {
+      "base_salary": "sample string",
+      "bonus": "sample string",
+      "equity": "sample string",
+      "total_compensation": "sample string",
+      "reasoning": "sample string"
+    },
+    "talking_points": [
+      "sample string"
+    ],
+    "counter_offer_scenarios": [
+      {
+        "scenario": "sample string",
+        "response": "sample string",
+        "adjusted_offer": "sample string"
+      }
+    ],
+    "negotiation_summary": "sample string"
+  }
+}

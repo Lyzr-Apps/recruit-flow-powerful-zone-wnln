@@ -1,0 +1,60 @@
+{
+  "agent_name": "Candidate Evaluation Agent",
+  "agent_id": "699da45b7c54a9ee105c16e0",
+  "description": "Expert technical interviewer and candidate screener that conducts screening assessments and produces evaluation scorecards.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "candidate_name": "string",
+    "assessment_questions": [
+      {
+        "question_number": "string",
+        "category": "string",
+        "question": "string",
+        "expected_answer_guidance": "string"
+      }
+    ],
+    "evaluation": {
+      "technical_score": "string",
+      "problem_solving_score": "string",
+      "communication_score": "string",
+      "overall_score": "string",
+      "recommendation": "string",
+      "confidence_level": "string",
+      "summary": "string",
+      "strengths": [
+        "string"
+      ],
+      "areas_of_concern": [
+        "string"
+      ]
+    }
+  },
+  "example_response": {
+    "candidate_name": "sample string",
+    "assessment_questions": [
+      {
+        "question_number": "sample string",
+        "category": "sample string",
+        "question": "sample string",
+        "expected_answer_guidance": "sample string"
+      }
+    ],
+    "evaluation": {
+      "technical_score": "sample string",
+      "problem_solving_score": "sample string",
+      "communication_score": "sample string",
+      "overall_score": "sample string",
+      "recommendation": "sample string",
+      "confidence_level": "sample string",
+      "summary": "sample string",
+      "strengths": [
+        "sample string"
+      ],
+      "areas_of_concern": [
+        "sample string"
+      ]
+    }
+  }
+}

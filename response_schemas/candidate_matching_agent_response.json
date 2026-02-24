@@ -1,0 +1,48 @@
+{
+  "agent_name": "Candidate Matching Agent",
+  "agent_id": "699da45b25bfd8a7382bdfa2",
+  "description": "Expert talent assessment and matching specialist that performs semantic analysis to score and rank sourced candidates against job requirements.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "ranked_candidates": [
+      {
+        "rank": "string",
+        "name": "string",
+        "overall_score": "string",
+        "skills_match": "string",
+        "experience_match": "string",
+        "cultural_fit": "string",
+        "scoring_reasoning": "string",
+        "strengths": [
+          "string"
+        ],
+        "concerns": [
+          "string"
+        ]
+      }
+    ],
+    "matching_summary": "string"
+  },
+  "example_response": {
+    "ranked_candidates": [
+      {
+        "rank": "sample string",
+        "name": "sample string",
+        "overall_score": "sample string",
+        "skills_match": "sample string",
+        "experience_match": "sample string",
+        "cultural_fit": "sample string",
+        "scoring_reasoning": "sample string",
+        "strengths": [
+          "sample string"
+        ],
+        "concerns": [
+          "sample string"
+        ]
+      }
+    ],
+    "matching_summary": "sample string"
+  }
+}

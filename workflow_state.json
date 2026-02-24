@@ -1,0 +1,107 @@
+{
+  "app_name": "RecruitFlow AI",
+  "description": "Intelligent Recruitment Assistant - End-to-end recruitment platform with 7 specialized AI agents",
+  "created_at": "2026-02-24",
+  "status": "agents_created",
+  "agent_ids": {
+    "sourcing_agent": "699da45bc9d1ec5e717898a1",
+    "matching_agent": "699da45b25bfd8a7382bdfa2",
+    "evaluation_agent": "699da45b7c54a9ee105c16e0",
+    "scheduler_agent": "699da4797c54a9ee105c16e6",
+    "analysis_agent": "699da489c9d1ec5e717898ad",
+    "negotiation_agent": "699da45d4d9b8b973a73e3eb",
+    "offer_agent": "699da45d981cd5ea8d6e133d"
+  },
+  "agents": [
+    {
+      "id": "699da45bc9d1ec5e717898a1",
+      "name": "Candidate Sourcing Agent",
+      "node_id": "sourcing_agent",
+      "provider": "Perplexity",
+      "model": "sonar-pro",
+      "type": "text",
+      "has_tools": false,
+      "has_web_search": true,
+      "response_schema_file": "response_schemas/candidate_sourcing_agent_response.json"
+    },
+    {
+      "id": "699da45b25bfd8a7382bdfa2",
+      "name": "Candidate Matching Agent",
+      "node_id": "matching_agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "type": "text",
+      "has_tools": false,
+      "has_web_search": false,
+      "response_schema_file": "response_schemas/candidate_matching_agent_response.json"
+    },
+    {
+      "id": "699da45b7c54a9ee105c16e0",
+      "name": "Candidate Evaluation Agent",
+      "node_id": "evaluation_agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "type": "text",
+      "has_tools": false,
+      "has_web_search": false,
+      "response_schema_file": "response_schemas/candidate_evaluation_agent_response.json"
+    },
+    {
+      "id": "699da4797c54a9ee105c16e6",
+      "name": "Interview Scheduler Agent",
+      "node_id": "scheduler_agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "type": "text",
+      "has_tools": true,
+      "has_web_search": false,
+      "tool_configs": [
+        {
+          "tool_name": "googlecalendar",
+          "tool_source": "composio",
+          "action_names": ["GOOGLECALENDAR_FIND_FREE_SLOTS", "GOOGLECALENDAR_CREATE_EVENT", "GOOGLECALENDAR_LIST_CALENDARS", "GOOGLECALENDAR_DELETE_EVENT"]
+        },
+        {
+          "tool_name": "gmail",
+          "tool_source": "composio",
+          "action_names": ["GMAIL_SEND_EMAIL", "GMAIL_FETCH_EMAILS"]
+        }
+      ],
+      "response_schema_file": "response_schemas/interview_scheduler_agent_response.json"
+    },
+    {
+      "id": "699da489c9d1ec5e717898ad",
+      "name": "Interview Analysis Agent",
+      "node_id": "analysis_agent",
+      "provider": "Anthropic",
+      "model": "claude-3-5-sonnet-latest",
+      "type": "text",
+      "has_tools": false,
+      "has_web_search": false,
+      "response_schema_file": "response_schemas/interview_analysis_agent_response.json"
+    },
+    {
+      "id": "699da45d4d9b8b973a73e3eb",
+      "name": "Compensation Negotiation Agent",
+      "node_id": "negotiation_agent",
+      "provider": "Perplexity",
+      "model": "sonar-pro",
+      "type": "text",
+      "has_tools": false,
+      "has_web_search": true,
+      "response_schema_file": "response_schemas/compensation_negotiation_agent_response.json"
+    },
+    {
+      "id": "699da45d981cd5ea8d6e133d",
+      "name": "Offer Letter Drafting Agent",
+      "node_id": "offer_agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "type": "text",
+      "has_tools": false,
+      "has_web_search": false,
+      "file_output": true,
+      "response_schema_file": "response_schemas/offer_letter_drafting_agent_response.json"
+    }
+  ]
+}

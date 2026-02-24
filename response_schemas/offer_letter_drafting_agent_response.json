@@ -1,0 +1,44 @@
+{
+  "agent_name": "Offer Letter Drafting Agent",
+  "agent_id": "699da45d981cd5ea8d6e133d",
+  "description": "Expert HR document specialist that generates professional, customized offer letters incorporating agreed compensation, role details, benefits, and start date.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "letter_content": "string",
+    "metadata": {
+      "candidate_name": "string",
+      "position": "string",
+      "department": "string",
+      "start_date": "string",
+      "total_compensation": "string",
+      "acceptance_deadline": "string"
+    },
+    "compliance_notes": [
+      "string"
+    ]
+  },
+  "example_response": {
+    "letter_content": "sample string",
+    "metadata": {
+      "candidate_name": "sample string",
+      "position": "sample string",
+      "department": "sample string",
+      "start_date": "sample string",
+      "total_compensation": "sample string",
+      "acceptance_deadline": "sample string"
+    },
+    "compliance_notes": [
+      "sample string"
+    ]
+  },
+  "has_module_outputs": true,
+  "module_outputs_example": {
+    "artifact_files": [
+      {
+        "file_url": "https://example.com/file.pdf"
+      }
+    ]
+  }
+}

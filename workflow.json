@@ -1,0 +1,102 @@
+{
+  "workflow": {
+    "nodes": [
+      {"id": "input_node", "type": "Input", "label": "Job Description Input", "nodeCategory": "input"},
+      {"id": "sourcing_agent", "type": "Agent", "label": "Candidate Sourcing Agent", "nodeCategory": "agent"},
+      {"id": "matching_agent", "type": "Agent", "label": "Candidate Matching Agent", "nodeCategory": "agent"},
+      {"id": "evaluation_agent", "type": "Agent", "label": "Candidate Evaluation Agent", "nodeCategory": "agent"},
+      {"id": "scheduler_agent", "type": "Agent", "label": "Interview Scheduler Agent", "nodeCategory": "agent"},
+      {"id": "analysis_agent", "type": "Agent", "label": "Interview Analysis Agent", "nodeCategory": "agent"},
+      {"id": "negotiation_agent", "type": "Agent", "label": "Compensation Negotiation Agent", "nodeCategory": "agent"},
+      {"id": "offer_agent", "type": "Agent", "label": "Offer Letter Drafting Agent", "nodeCategory": "agent"}
+    ],
+    "edges": [
+      {"source": "input_node", "target": "sourcing_agent"},
+      {"source": "sourcing_agent", "target": "matching_agent"},
+      {"source": "matching_agent", "target": "evaluation_agent"},
+      {"source": "evaluation_agent", "target": "scheduler_agent"},
+      {"source": "scheduler_agent", "target": "analysis_agent"},
+      {"source": "analysis_agent", "target": "negotiation_agent"},
+      {"source": "negotiation_agent", "target": "offer_agent"}
+    ]
+  },
+  "agents": [
+    {
+      "node_id": "sourcing_agent",
+      "agent_id": "699da45bc9d1ec5e717898a1",
+      "name": "Candidate Sourcing Agent",
+      "provider": "Perplexity",
+      "model": "sonar-pro",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "capabilities": ["web_search_builtin"]
+    },
+    {
+      "node_id": "matching_agent",
+      "agent_id": "699da45b25bfd8a7382bdfa2",
+      "name": "Candidate Matching Agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "capabilities": []
+    },
+    {
+      "node_id": "evaluation_agent",
+      "agent_id": "699da45b7c54a9ee105c16e0",
+      "name": "Candidate Evaluation Agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.4,
+      "top_p": 0.95,
+      "tools": [],
+      "capabilities": []
+    },
+    {
+      "node_id": "scheduler_agent",
+      "agent_id": "699da4797c54a9ee105c16e6",
+      "name": "Interview Scheduler Agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.2,
+      "top_p": 1,
+      "tools": ["googlecalendar", "gmail"],
+      "capabilities": ["composio_tools"]
+    },
+    {
+      "node_id": "analysis_agent",
+      "agent_id": "699da489c9d1ec5e717898ad",
+      "name": "Interview Analysis Agent",
+      "provider": "Anthropic",
+      "model": "claude-3-5-sonnet-latest",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "capabilities": []
+    },
+    {
+      "node_id": "negotiation_agent",
+      "agent_id": "699da45d4d9b8b973a73e3eb",
+      "name": "Compensation Negotiation Agent",
+      "provider": "Perplexity",
+      "model": "sonar-pro",
+      "temperature": 0.3,
+      "top_p": 1,
+      "tools": [],
+      "capabilities": ["web_search_builtin"]
+    },
+    {
+      "node_id": "offer_agent",
+      "agent_id": "699da45d981cd5ea8d6e133d",
+      "name": "Offer Letter Drafting Agent",
+      "provider": "OpenAI",
+      "model": "gpt-4.1",
+      "temperature": 0.5,
+      "top_p": 0.95,
+      "tools": [],
+      "capabilities": ["file_output"]
+    }
+  ]
+}

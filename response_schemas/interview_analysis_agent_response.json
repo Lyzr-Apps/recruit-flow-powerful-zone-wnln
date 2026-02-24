@@ -1,0 +1,54 @@
+{
+  "agent_name": "Interview Analysis Agent",
+  "agent_id": "699da489c9d1ec5e717898ad",
+  "description": "Expert interview evaluator and hiring advisor that analyzes interview transcripts to compile structured, unbiased evaluation reports.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "candidate_name": "string",
+    "competency_scores": [
+      {
+        "dimension": "string",
+        "score": "string",
+        "justification": "string"
+      }
+    ],
+    "overall_score": "string",
+    "recommendation": "string",
+    "confidence_percentage": "string",
+    "strengths": [
+      "string"
+    ],
+    "concerns": [
+      "string"
+    ],
+    "notable_quotes": [
+      "string"
+    ],
+    "summary": "string"
+  },
+  "example_response": {
+    "candidate_name": "sample string",
+    "competency_scores": [
+      {
+        "dimension": "sample string",
+        "score": "sample string",
+        "justification": "sample string"
+      }
+    ],
+    "overall_score": "sample string",
+    "recommendation": "sample string",
+    "confidence_percentage": "sample string",
+    "strengths": [
+      "sample string"
+    ],
+    "concerns": [
+      "sample string"
+    ],
+    "notable_quotes": [
+      "sample string"
+    ],
+    "summary": "sample string"
+  }
+}

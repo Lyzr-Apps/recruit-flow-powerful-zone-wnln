@@ -1,0 +1,48 @@
+{
+  "agent_name": "Candidate Sourcing Agent",
+  "agent_id": "699da45bc9d1ec5e717898a1",
+  "description": "Expert talent sourcing specialist that searches the web across LinkedIn, Indeed, and job boards to identify and shortlist relevant candidates based on job descriptions.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "candidates": [
+      {
+        "name": "string",
+        "current_title": "string",
+        "company": "string",
+        "location": "string",
+        "years_of_experience": "string",
+        "key_skills": [
+          "string"
+        ],
+        "relevance_score": "string",
+        "relevance_notes": "string",
+        "contact_info": "string",
+        "source_platform": "string"
+      }
+    ],
+    "total_found": "string",
+    "search_summary": "string"
+  },
+  "example_response": {
+    "candidates": [
+      {
+        "name": "sample string",
+        "current_title": "sample string",
+        "company": "sample string",
+        "location": "sample string",
+        "years_of_experience": "sample string",
+        "key_skills": [
+          "sample string"
+        ],
+        "relevance_score": "sample string",
+        "relevance_notes": "sample string",
+        "contact_info": "sample string",
+        "source_platform": "sample string"
+      }
+    ],
+    "total_found": "sample string",
+    "search_summary": "sample string"
+  }
+}

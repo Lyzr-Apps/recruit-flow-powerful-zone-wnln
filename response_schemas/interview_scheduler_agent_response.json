@@ -1,0 +1,54 @@
+{
+  "agent_name": "Interview Scheduler Agent",
+  "agent_id": "699da4797c54a9ee105c16e6",
+  "description": "Expert interview scheduling coordinator that automates interview scheduling by checking calendar availability, creating events, and sending invite emails.",
+  "agent_type": "json",
+  "accessor": "result",
+  "auto_generated": true,
+  "response_schema": {
+    "scheduling_status": "string",
+    "scheduled_interviews": [
+      {
+        "candidate_name": "string",
+        "interviewer_email": "string",
+        "date": "string",
+        "time": "string",
+        "duration": "string",
+        "meeting_link": "string",
+        "calendar_event_id": "string",
+        "status": "string"
+      }
+    ],
+    "emails_sent": [
+      {
+        "recipient": "string",
+        "subject": "string",
+        "status": "string"
+      }
+    ],
+    "summary": "string"
+  },
+  "example_response": {
+    "scheduling_status": "sample string",
+    "scheduled_interviews": [
+      {
+        "candidate_name": "sample string",
+        "interviewer_email": "sample string",
+        "date": "sample string",
+        "time": "sample string",
+        "duration": "sample string",
+        "meeting_link": "sample string",
+        "calendar_event_id": "sample string",
+        "status": "sample string"
+      }
+    ],
+    "emails_sent": [
+      {
+        "recipient": "sample string",
+        "subject": "sample string",
+        "status": "sample string"
+      }
+    ],
+    "summary": "sample string"
+  }
+}
